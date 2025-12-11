@@ -1,0 +1,29 @@
+package main;
+
+import javax.swing.*;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class Main
+{
+    public static void main(String[] args)
+    {
+        JFrame window=new JFrame();
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE );
+        window.setResizable(false);
+        window.setTitle("Orpheus' Odyssey");
+
+        GamePanel gamePanel=new GamePanel();
+        window.add(gamePanel);
+//save la configuratia cu care sa inceapa jocul in functie de ultimele schimbare de la options
+        gamePanel.config.loadConfig();
+        window.pack();
+
+        window.setLocationRelativeTo(null);
+        window.setVisible(true);
+        gamePanel.setupGame();
+        gamePanel.startGameThread();
+    }
+}
